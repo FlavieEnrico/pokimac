@@ -2,15 +2,7 @@
 #include <cstring>
 using namespace std;
 
-void greeting(string &name);
-void starterChoice(string &name);
-
-int main() {
-    string name;
-    greeting(name);
-    starterChoice(name);
-    return 0;
-}
+#include "poki-start.h"
 
 void greeting(string &name){
     cout << "Bienvenue nouveau dresseur ! On m'a dit qu'une potentielle nouvelle recrue commençait à se faire une réputation à Champy-Marny, mais je ne pensais pas te rencontrer de sitôt. D'ailleurs comment t'appelles-tu ?" << endl;
@@ -29,5 +21,5 @@ void starterChoice(string &name) {
     cout << "2. Salamèche. C'est un pokimac de type Feu. La flamme qui brûle au bout de sa queue indique l’humeur de ce Pokémon. Elle vacille lorsque Salamèche est content. En revanche, lorsqu’il s’énerve, la flamme prend de l’importance et brûle plus ardemment. Si cette flamme s’éteint, la vie de ce Pokémon s’éteindra elle aussi." << endl << endl;
     cout << "3. Carapuce. C'est un pokimac de type Eau. La carapace de Carapuce ne sert pas qu’à le protéger. La forme ronde de sa carapace et ses rainures lui permettent d’améliorer son hydrodynamisme. Ce Pokémon nage extrêmement vite. Il se réfugie dans sa carapace et réplique en éclaboussant l’ennemi à la première occasion." << endl << endl;
     cout << "Alors " << name << ", qui choisis-tu pour t'accompagner dans ton aventure ?" << endl;
-    /* idem lecture de la réponse*/ 
+    /* idem lecture de la réponse*/
 }
