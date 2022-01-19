@@ -1,4 +1,5 @@
 #include "main.h"
 
 void greeting(string &name);
-void starterChoice(string &name, pokimac &starterPoki);
+void starterDisplay(string &name, Pokimac &starterPoki);
+void starterChoice(Pokimac &starterPoki);

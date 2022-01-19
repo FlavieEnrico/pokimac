@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-struct pokimac {
+struct Pokimac {
  string name;
  int health;
  int level;
