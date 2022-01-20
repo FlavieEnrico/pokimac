@@ -3,6 +3,7 @@
 #include <windows.h>
 using namespace std;
 
+#include "pokidex.h"
 #include "poki-start.h"
 #include "main.h"
 
@@ -33,17 +34,22 @@ void starterDisplay(string &name, Pokimac &starterPoki) {
 }
 
 void starterChoice(Pokimac &starterPoki) {
-
     string choice;
     cin >> choice;
 	if (choice=="1") {
-        starterPoki = bulbizarre;
+        starterPoki.name="Bulbizarre";
+        starterPoki.health=45;
+        starterPoki.level=5;
     }
     else if (choice=="2") {
-        starterPoki = salameche;
+        starterPoki.name="Salamèche";
+        starterPoki.health=39;
+        starterPoki.level=5;
     }
     else if (choice=="3") {
-        starterPoki = carapuce;
+        starterPoki.name="Carapuce";
+        starterPoki.health=44;
+        starterPoki.level=5;
     }
     else {
         cout << "Veuillez sélectionner l'une des options disponibles." << endl;

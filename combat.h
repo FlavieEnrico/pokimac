@@ -1,4 +1,5 @@
 #include <cstring>
+#include "main.h"
 
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki);
 void capture(Pokimac &opponentPoki, const int healthIni);

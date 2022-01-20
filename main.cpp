@@ -1,15 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include<locale>
+#include <locale>
 #include <windows.h>
 #include <mmsystem.h>
 #include<thread>
 using namespace std;
 
-#include "poki-start.h"
 #include "main.h"
+#include "poki-start.h"
 #include "combat.h"
+
+Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 
 int main() {
     HWND console = GetConsoleWindow();
@@ -20,6 +22,9 @@ int main() {
 
     setlocale(LC_CTYPE, "fra");
     string name;
+
+    createPokidex();
+
     Pokimac mainPoki, opponentPoki;
     opponentPoki.name = "Chenipan";
     opponentPoki.health =12;
