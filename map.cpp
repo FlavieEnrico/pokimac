@@ -34,9 +34,6 @@ void displayMap(Pokimac *any_pokimac, Player *sacha, char* tab) {
         std::cout << std::endl;
     }
 
-    ConsoleUtils::setCursorPos(any_pokimac->position.x, any_pokimac->position.y);//on positionne le curseur de la console à la position du pokemon
-    std::cout << any_pokimac->skin; // Output 'C' at pokemon position
-
     ConsoleUtils::setCursorPos(sacha->position.x, sacha->position.y);//on positionne le curseur de la console à la position du joueur
     std::cout << sacha->skin; // Output '@' at my position
 }
@@ -47,8 +44,6 @@ void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
 		while (!exitLoop) {
 			bool special = false;
 			int c = ConsoleUtils::getChar(&special);
-
-            createPokidex();
 			randomMoveGenerator(any_pokimac, sacha, tab, width, height);
 
 			//// Player part ///
@@ -101,15 +96,19 @@ Coordonnees randomCoordinateGenerator(const int mapWidth,const int mapHeight){
 }
 
 /// Générer un pokemon "ennemi" sur la carte ///
-void initializePokimac(Pokimac any_pokimac, Player *sacha,const int mapWidth,const int mapHeight) {
+void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,const int mapHeight) {
     do {
-        any_pokimac.position = randomCoordinateGenerator(mapWidth, mapHeight);
-    } while((any_pokimac.position.x == sacha->position.x)&&(any_pokimac.position.y == sacha->position.y));
+        any_pokimac->position = randomCoordinateGenerator(mapWidth, mapHeight);
+    } while((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y));
     // si le pokemon a les memes coordonnées que le joueur, on génère d'autres coordonnées
+
+    ConsoleUtils::setCursorPos(any_pokimac->position.x, any_pokimac->position.y);//on positionne le curseur de la console à la position du pokemon
+    cout << any_pokimac->skin; // Output 'C' at pokemon position
 }
 
 
 /// Le pokemon se déplace d'une case aléatoirement sur la carte ///
+// TODO (elise#1#): fix randomMoveGenerator
 void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const int mapWidth, const int mapHeight){
 
     Coordonnees oldPokiPos = any_pokimac->position;

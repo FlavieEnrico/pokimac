@@ -7,7 +7,7 @@ extern int height;
 extern char* tab;
 
 Coordonnees randomCoordinateGenerator(const int mapWidth,const int mapHeight);
-void initializePokimac(Pokimac any_pokimac, Player *sacha,const int mapWidth,const int mapHeight);
+void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,const int mapHeight);
 void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const int mapWidth,const int mapHeight);
 
 void fillMap(char* tab,const int mapWidth,const int mapHeight);

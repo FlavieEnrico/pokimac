@@ -59,13 +59,15 @@ int main() {
 
     greeting(name);
     starterDisplay(name, mainPoki);
-    initializePokimac(chenipan,&sacha,width,height);
 
     music=3;
     BackgroundMusic();
 
+    Sleep(2000);
     ConsoleUtils::clear();
     displayMap(&chenipan,&sacha,tab);
+    createPokidex();
+    initializePokimac(&chenipan,&sacha,width,height);
     playerMove(&chenipan,&sacha,tab);
 
     // important free my allocated memory
