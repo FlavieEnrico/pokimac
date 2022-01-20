@@ -84,4 +84,5 @@ void createPokidex(){
     magneton.health = 100;
     magneton.level = 9;
     magneton.skin = 'M';
+
 }

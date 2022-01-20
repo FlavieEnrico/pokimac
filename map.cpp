@@ -95,6 +95,8 @@ Coordonnees randomCoordinateGenerator(const int mapWidth,const int mapHeight){
     return randomPos;
 }
 
+//void randomizeOpponentPokis () {}
+
 /// Générer un pokemon "ennemi" sur la carte ///
 void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,const int mapHeight) {
     do {
@@ -108,7 +110,6 @@ void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,co
 
 
 /// Le pokemon se déplace d'une case aléatoirement sur la carte ///
-// TODO (elise#1#): fix randomMoveGenerator
 void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const int mapWidth, const int mapHeight){
 
     Coordonnees oldPokiPos = any_pokimac->position;
