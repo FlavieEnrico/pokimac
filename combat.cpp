@@ -5,6 +5,7 @@ using namespace std;
 
 #include "main.h"
 #include "combat.h"
+#include "consoleUtils.hpp"
 
 void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
@@ -14,6 +15,8 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     if (choice=="1") {
         attaque(mainPoki, opponentPoki);
         if (opponentPoki.health>0) {
+            Sleep(1000);
+            ConsoleUtils::clear();
             combat(mainPoki, opponentPoki, healthIni);
         }
     }
@@ -23,6 +26,8 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
         }
         else {
             cout << "Le pokémon n'est pas assez affaibli pour être capturé !" << endl;
+            Sleep(1000);
+            ConsoleUtils::clear();
             combat(mainPoki, opponentPoki, healthIni);
         }
     }
@@ -31,6 +36,8 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     }
     else {
         cout << "Veuillez sélectionner l'une des options disponibles." << endl;
+        Sleep(1000);
+        ConsoleUtils::clear();
         combat(mainPoki, opponentPoki, healthIni);
     }
 }
@@ -46,11 +53,7 @@ void capture(Pokimac &opponentPoki, const int healthIni){
 }
 
 void fuite() {
-    cout << "Tu as fuit... " << endl;
-}
-
-void introCombat() {
-    cout << "Un combat est sur le point de commencer ! Que vas-tu faire ?" << endl;
+    cout << "Tu as fui... " << endl;
 }
 
 void displayPoki(Pokimac &mainPoki, Pokimac &opponentPoki) {

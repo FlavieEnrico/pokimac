@@ -63,7 +63,7 @@ int main() {
     music=3;
     BackgroundMusic();
 
-    Sleep(2000);
+    Sleep(1000);
     ConsoleUtils::clear();
     displayMap(&chenipan,&sacha,tab);
     createPokidex();

@@ -99,8 +99,8 @@ Coordonnees randomCoordinateGenerator(const int mapWidth,const int mapHeight){
 void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,const int mapHeight) {
     do {
         any_pokimac->position = randomCoordinateGenerator(mapWidth, mapHeight);
-    } while((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y));
-    // si le pokemon a les memes coordonnées que le joueur, on génère d'autres coordonnées
+    } while(((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y))||(any_pokimac->position.x == 0)||(any_pokimac->position.y == 0)||(any_pokimac->position.x == mapWidth-1)||(any_pokimac->position.y == mapHeight-1));
+    // si le pokemon a les memes coordonnées que le joueur, ou s'il est sur la bordure, on génère d'autres coordonnées
 
     ConsoleUtils::setCursorPos(any_pokimac->position.x, any_pokimac->position.y);//on positionne le curseur de la console à la position du pokemon
     cout << any_pokimac->skin; // Output 'C' at pokemon position
@@ -141,5 +141,12 @@ void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const i
             ConsoleUtils::setCursorPos(any_pokimac->position.x, any_pokimac->position.y);
             cout << any_pokimac->skin; // Output skin of pokimac at cursor position
             ConsoleUtils::setCursorPos(sacha->position.x, sacha->position.y);
+
+            ///// Si je vais sur la même case qu'un pokémon
+            if ((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y)){
+                    ConsoleUtils::clear();
+                    combat(mainPoki, *any_pokimac, any_pokimac->health);
+            }
+
         }
 }
