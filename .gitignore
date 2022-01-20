@@ -42,3 +42,4 @@ obj/
 .vscode/settings.json
 *.cbp
 *.pdf
+*.bak
