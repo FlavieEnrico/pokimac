@@ -7,11 +7,21 @@
 #include<thread>
 using namespace std;
 
+#include "consoleUtils.hpp"
 #include "main.h"
 #include "poki-start.h"
 #include "combat.h"
+#include "map.h"
 
 Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
+Pokimac mainPoki;
+
+//taille de la carte
+int width = 24;
+int height = 12;
+
+char* tab = new char[width*height];
+
 int music=1;
 
 void BackgroundMusic() {
@@ -37,17 +47,29 @@ int main() {
     setlocale(LC_CTYPE, "fra");
     string name;
 
-    createPokidex();
+    createPokidex(); // Remplissage infos pokimacs
 
-    Pokimac mainPoki, opponentPoki;
-    opponentPoki.name = "Chenipan";
-    opponentPoki.health =12;
+    // Création du joueur //
+    Player sacha;
+    initializePlayer(&sacha,width,height);
+    fillMap(tab,width,height);
+
     thread MusicThread(BackgroundMusic);
     MusicThread.join();
+
     greeting(name);
     starterDisplay(name, mainPoki);
-    music=2;
+    initializePokimac(chenipan,&sacha,width,height);
+
+    music=3;
     BackgroundMusic();
-    combat(mainPoki, opponentPoki, opponentPoki.health);
+
+    ConsoleUtils::clear();
+    displayMap(&chenipan,&sacha,tab);
+    playerMove(&chenipan,&sacha,tab);
+
+    // important free my allocated memory
+    free(tab);
+
     return 0;
 }
