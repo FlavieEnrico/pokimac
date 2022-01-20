@@ -119,16 +119,16 @@ void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const i
 
     switch (rdchoice){
         case 0:
-            --any_pokimac->position.x;
+            if(any_pokimac->position.x>1)--any_pokimac->position.x;
             break;
         case 1:
-            --any_pokimac->position.y;
+            if(any_pokimac->position.y>1)--any_pokimac->position.y;
             break;
         case 2:
-            ++any_pokimac->position.x;
+            if(any_pokimac->position.x<width-2)++any_pokimac->position.x;
             break;
         case 3:
-            ++any_pokimac->position.y;
+            if(any_pokimac->position.y<height-2)++any_pokimac->position.y;
             break;
          default:
             break;
