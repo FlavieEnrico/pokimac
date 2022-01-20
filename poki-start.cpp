@@ -12,7 +12,7 @@ void greeting(string &name){
     cout << name << " ? Ravi de te rencontrer. Tu pourras m'appeler le Professeur, je t'accompagnerais dans le début de ton aventure. Sais-tu ce qu'est un PokImac (y/n) ?" << endl;
     string more;
     cin >> more;
-	if (more=="n") {
+	if (more=="n" || more=="N") {
         cout << "Un pokimac, c'est une sympathique petite bestiole un  peu sauvage qui se promène partout dans les terres de Champy-Marny. Ton aventure consistera à te promener dans la ville et empêcher la prolifération intempestive des pokimac. Après, tu le fais de la manière que tu veux ; en les capturant, en gagnant le combat... Tu peux te déplacer sur la carte en utilisant les flèches directionnelles." << endl << endl;
        // Sleep(9000);
     }

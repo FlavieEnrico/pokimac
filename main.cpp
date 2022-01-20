@@ -12,6 +12,20 @@ using namespace std;
 #include "combat.h"
 
 Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
+int music=1;
+
+void BackgroundMusic() {
+    PlaySound(NULL, 0, 0);
+    if(music==1) {
+        PlaySound(TEXT("intro.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    }
+    else if(music==2) {
+        PlaySound(TEXT("combat.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    }
+    else if(music==3) {
+        PlaySound(TEXT("balade.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    }
+}
 
 int main() {
     HWND console = GetConsoleWindow();
@@ -28,14 +42,12 @@ int main() {
     Pokimac mainPoki, opponentPoki;
     opponentPoki.name = "Chenipan";
     opponentPoki.health =12;
-    thread music([]() {
-    PlaySound(TEXT("intro.wav"), NULL, SND_FILENAME | SND_SYNC);
-    });
+    thread MusicThread(BackgroundMusic);
+    MusicThread.join();
     greeting(name);
     starterDisplay(name, mainPoki);
-    /*thread music2([]() {
-    PlaySound(TEXT("combat.wav"), NULL, SND_FILENAME | SND_SYNC);
-    });*/
+    music=2;
+    BackgroundMusic();
     combat(mainPoki, opponentPoki, opponentPoki.health);
     return 0;
 }
