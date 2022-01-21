@@ -7,6 +7,7 @@ using namespace std;
 #include "combat.h"
 #include "consoleUtils.hpp"
 #include "map.h"
+#include "pokidex.h"
 
 void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
@@ -44,8 +45,7 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     //to start playing again
     Sleep(1000);
     ConsoleUtils::clear();
-    displayMap(&chenipan,&sacha,tab);
-    createPokidex();
+    displayMap(&sacha,tab);
     initializePokimac(&chenipan,&sacha,width,height);
     playerMove(&chenipan,&sacha,tab);
 }

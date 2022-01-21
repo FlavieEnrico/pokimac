@@ -12,10 +12,9 @@ void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const i
 
 void fillMap(char* tab,const int mapWidth,const int mapHeight);
 void initializePlayer(Player *sacha, const int mapWidth,const int mapHeight);
-void displayMap(Pokimac *any_pokimac, Player *sacha, char* tab);
+void displayMap(Player *sacha, char* tab);
 void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab);
 
-
-
+void putPokimacsOnMap();
 
 #endif // MAP_H_INCLUDED

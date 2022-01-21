@@ -43,3 +43,4 @@ obj/
 *.cbp
 *.pdf
 *.bak
+*.cscope_file_list

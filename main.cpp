@@ -10,11 +10,14 @@ using namespace std;
 #include "consoleUtils.hpp"
 #include "main.h"
 #include "poki-start.h"
+#include "pokidex.h"
 #include "combat.h"
 #include "map.h"
 
 Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 Pokimac mainPoki;
+Pokimac pokidex[14];
+Pokimac opponents[5];
 
 //taille de la carte
 int width = 24;
@@ -39,6 +42,9 @@ void BackgroundMusic() {
 }
 
 int main() {
+
+    srand(time(0)); //generate random numbers
+
     HWND console = GetConsoleWindow();
 	RECT ConsoleRect;
 	GetWindowRect(console, &ConsoleRect);
@@ -57,7 +63,7 @@ int main() {
     thread MusicThread(BackgroundMusic);
     MusicThread.join();
 
-    greeting(name);
+    //greeting(name);
     starterDisplay(name, mainPoki);
 
     music=3;
@@ -65,10 +71,9 @@ int main() {
 
     Sleep(1000);
     ConsoleUtils::clear();
-    displayMap(&chenipan,&sacha,tab);
-    createPokidex();
-    initializePokimac(&chenipan,&sacha,width,height);
-    playerMove(&chenipan,&sacha,tab);
+    displayMap(&sacha,tab);
+    putPokimacsOnMap();
+    playerMove(opponents,&sacha,tab);
 
     // important free my allocated memory
     free(tab);

@@ -26,7 +26,5 @@ extern Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupi
 extern Pokimac mainPoki;
 extern Player sacha;
 
-void createPokidex();
-
 void BackgroundMusic();
 #endif

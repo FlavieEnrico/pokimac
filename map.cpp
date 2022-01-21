@@ -3,6 +3,7 @@
 #include "main.h"
 #include "consoleUtils.hpp"
 #include "map.h"
+#include "pokidex.h"
 #include "combat.h"
 using namespace std;
 
@@ -25,7 +26,7 @@ void initializePlayer(Player *sacha, const int mapWidth,const int mapHeight){
 }
 
 /// afficher la carte ///
-void displayMap(Pokimac *any_pokimac, Player *sacha, char* tab) {
+void displayMap(Player *sacha, char* tab) {
     ConsoleUtils::setCursorPos(0, 0);
     for (unsigned int j=0; j<height; j++) {
         for (unsigned int i=0; i<width; i++) {
@@ -42,11 +43,17 @@ void displayMap(Pokimac *any_pokimac, Player *sacha, char* tab) {
 void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
     bool exitLoop = false;
 		while (!exitLoop) {
-			bool special = false;
-			int c = ConsoleUtils::getChar(&special);
-			randomMoveGenerator(any_pokimac, sacha, tab, width, height);
+            bool special = false;
+
+			//// Pokimacs part ///
+
+            for (int i=0;i<5;i++){
+                randomMoveGenerator(&any_pokimac[i], sacha, tab, width, height);
+			}
 
 			//// Player part ///
+
+			int c = ConsoleUtils::getChar(&special);
 
 			Coordonnees oldSachaPos = sacha->position;
 
@@ -86,16 +93,12 @@ void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
 // sert pour donner une position aléatoire aux différents pokemons sur la carte //
 Coordonnees randomCoordinateGenerator(const int mapWidth,const int mapHeight){
 
-    srand(time(0));
-
     Coordonnees randomPos;
     randomPos.x = rand()%(mapWidth-1);
     randomPos.y = rand()%(mapHeight-1);
 
     return randomPos;
 }
-
-//void randomizeOpponentPokis () {}
 
 /// Générer un pokemon "ennemi" sur la carte ///
 void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,const int mapHeight) {
@@ -109,14 +112,22 @@ void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,co
 }
 
 
+/// placer tous les pokémons ennemi sur la carte
+
+void putPokimacsOnMap(){
+    for (int i=0;i<5;i++){
+        Pokimac choosen_one = randomChooseOpponentPoki(pokidex);
+        opponents[i]=choosen_one;
+        initializePokimac(&choosen_one,&sacha,width,height);
+    }
+}
+
 /// Le pokemon se déplace d'une case aléatoirement sur la carte ///
 void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const int mapWidth, const int mapHeight){
 
     Coordonnees oldPokiPos = any_pokimac->position;
 
-    srand(time(0));
-
-    int rdchoice = rand()%3; // choix entre 4 directions
+    int rdchoice = rand()%5; // choix entre 4 directions
 
     switch (rdchoice){
         case 0:
@@ -137,13 +148,15 @@ void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const i
 
       //mettre à jour l'affichage de la position du pokimac
         if(oldPokiPos.x != any_pokimac->position.x || oldPokiPos.y != any_pokimac->position.y) {
+
             ConsoleUtils::setCursorPos(oldPokiPos.x, oldPokiPos.y);
             cout << tab[oldPokiPos.y*mapWidth+oldPokiPos.x]; // Clean up my current location by showing what is in my tab
             ConsoleUtils::setCursorPos(any_pokimac->position.x, any_pokimac->position.y);
             cout << any_pokimac->skin; // Output skin of pokimac at cursor position
+
             ConsoleUtils::setCursorPos(sacha->position.x, sacha->position.y);
 
-            ///// Si je vais sur la même case qu'un pokémon
+            ///// Si je vais sur la même case que le joueur
             if ((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y)){
                     ConsoleUtils::clear();
                     combat(mainPoki, *any_pokimac, any_pokimac->health);
