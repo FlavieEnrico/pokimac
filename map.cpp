@@ -52,6 +52,10 @@ void playerMove(Player *sacha, char* tab){
                 ///// Si je vais sur la même case qu'un pokémon
                     if ((opponents[i].position.x == sacha->position.x)&&(opponents[i].position.y == sacha->position.y)){
                         exitLoop = true;
+
+                        music=2;
+                        BackgroundMusic();
+
                         ConsoleUtils::clear();
                         combat(mainPoki, opponents[i], i, opponents[i].health);
                     }

@@ -14,7 +14,7 @@ void greeting(string &name){
     string more;
     cin >> more;
 	if (more=="n" || more=="N") {
-        cout << "Un pokimac, c'est une sympathique petite bestiole un  peu sauvage qui se promène partout dans les terres de Champy-Marny. Ton aventure consistera à te promener dans la ville et empêcher la prolifération intempestive des pokimac. Après, tu le fais de la manière que tu veux ; en les capturant, en gagnant le combat... Tu peux te déplacer sur la carte en utilisant les flèches directionnelles." << endl << endl;
+        cout << "Un pokimac, c'est une sympathique petite bestiole un  peu sauvage qui se promène partout dans les terres de Champy-Marny. Ton aventure consistera à te promener dans la ville et empêcher la prolifération intempestive des pokimac. Après, tu le fais de la manière que tu veux ; en les capturant, en gagnant le combat... Tu peux te déplacer sur la carte en utilisant les flèches directionnelles. Tu seras représenté par le symbole '@' sur la carte. Les autres symboles sont des pokimacs !" << endl << endl;
        Sleep(1000);
     }
 }
