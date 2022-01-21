@@ -7,4 +7,4 @@ void fuite();
 
 void displayPoki(Pokimac &mainPoki, Pokimac &opponentPoki);
 
-void combat(Pokimac &starterPoki, Pokimac &opponentPoki, const int healthIni);
+void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healthIni);

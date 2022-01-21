@@ -47,13 +47,13 @@ void playerMove(Player *sacha, char* tab){
 
 			//// Pokimacs part ///
 
-            for (int i=0;i<5;i++){
-                randomMoveGenerator(&opponents[i], sacha, tab, width, height);
+            for (int i=0;i<nbOpponents;i++){
+                randomMoveGenerator(&opponents[i],i, sacha, tab, width, height);
                 ///// Si je vais sur la même case qu'un pokémon
                     if ((opponents[i].position.x == sacha->position.x)&&(opponents[i].position.y == sacha->position.y)){
                         exitLoop = true;
                         ConsoleUtils::clear();
-                        combat(mainPoki, opponents[i], opponents[i].health);
+                        combat(mainPoki, opponents[i], i, opponents[i].health);
                     }
 			}
 
@@ -114,7 +114,7 @@ void initializePokimac(Pokimac *any_pokimac, Player *sacha,const int mapWidth,co
 /// placer tous les pokémons ennemi sur la carte
 
 void putPokimacsOnMap(){
-    for (int i=0;i<5;i++){
+    for (int i=0;i<nbOpponents;i++){
         Pokimac choosen_one = randomChooseOpponentPoki(pokidex);
         opponents[i]=choosen_one;
         initializePokimac(&opponents[i],&sacha,width,height);
@@ -122,7 +122,7 @@ void putPokimacsOnMap(){
 }
 
 /// Le pokemon se déplace d'une case aléatoirement sur la carte ///
-void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const int mapWidth, const int mapHeight){
+void randomMoveGenerator(Pokimac *any_pokimac,int index, Player *sacha, char* tab, const int mapWidth, const int mapHeight){
 
     Coordonnees oldPokiPos = any_pokimac->position;
 
@@ -158,7 +158,7 @@ void randomMoveGenerator(Pokimac *any_pokimac, Player *sacha, char* tab, const i
             ///// Si je vais sur la même case que le joueur
             if ((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y)){
                     ConsoleUtils::clear();
-                    combat(mainPoki, *any_pokimac, any_pokimac->health);
+                    combat(mainPoki, *any_pokimac,index, any_pokimac->health);
             }
 
         }

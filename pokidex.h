@@ -3,6 +3,8 @@
 
 extern Pokimac pokidex[14];
 extern Pokimac opponents[5];
+extern int nbOpponents;
+
 void createPokidex();
 Pokimac randomChooseOpponentPoki(Pokimac *pokidex);
 

@@ -27,4 +27,6 @@ extern Pokimac mainPoki;
 extern Player sacha;
 
 void BackgroundMusic();
+void startGame();
+void resumeGame();
 #endif

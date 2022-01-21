@@ -17,7 +17,10 @@ using namespace std;
 Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 Pokimac mainPoki;
 Pokimac pokidex[14];
-Pokimac opponents[5];
+
+int nbOpponents = 5;
+const int nb = 5;
+Pokimac opponents[nb];
 
 //taille de la carte
 int width = 24;
@@ -39,6 +42,24 @@ void BackgroundMusic() {
     else if(music==3) {
         PlaySound(TEXT("balade.wav"), NULL, SND_FILENAME | SND_ASYNC);
     }
+}
+
+void startGame() {
+    ConsoleUtils::clear();
+    displayMap(&sacha,tab);
+    putPokimacsOnMap();
+    playerMove(&sacha,tab);
+}
+
+void resumeGame() {
+    ConsoleUtils::clear();
+    displayMap(&sacha,tab);
+
+    for (int i=0;i<nbOpponents;i++){
+        ConsoleUtils::setCursorPos(opponents[i].position.x, opponents[i].position.y);//on positionne le curseur de la console à la position du pokemon
+        cout << opponents[i].skin; // Output 'C' at pokemon position
+    }
+    playerMove(&sacha,tab);
 }
 
 int main() {
@@ -70,10 +91,7 @@ int main() {
     BackgroundMusic();
 
     Sleep(1000);
-    ConsoleUtils::clear();
-    displayMap(&sacha,tab);
-    putPokimacsOnMap();
-    playerMove(&sacha,tab);
+    startGame();
 
     // important free my allocated memory
     free(tab);

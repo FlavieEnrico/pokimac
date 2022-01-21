@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <windows.h>
+#include <algorithm> //rotate func
 using namespace std;
 
 #include "main.h"
@@ -9,7 +10,7 @@ using namespace std;
 #include "map.h"
 #include "pokidex.h"
 
-void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
+void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
     cout << "1. Attaque !" << endl << "2. Capture" << endl << "3. Fuite" << endl;
     string choice;
@@ -19,7 +20,7 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
         if (opponentPoki.health>0) {
             Sleep(1000);
             ConsoleUtils::clear();
-            combat(mainPoki, opponentPoki, healthIni);
+            combat(mainPoki, opponentPoki, index, healthIni);
         }
     }
     else if (choice=="2") {
@@ -30,24 +31,28 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
             cout << "Le pokémon n'est pas assez affaibli pour être capturé !" << endl;
             Sleep(1000);
             ConsoleUtils::clear();
-            combat(mainPoki, opponentPoki, healthIni);
+            combat(mainPoki, opponentPoki, index, healthIni);
         }
     }
     else if (choice=="3") {
         fuite();
+        Sleep(1000);
+        resumeGame();
     }
     else {
         cout << "Veuillez sélectionner l'une des options disponibles." << endl;
         Sleep(1000);
         ConsoleUtils::clear();
-        combat(mainPoki, opponentPoki, healthIni);
+        combat(mainPoki, opponentPoki, index, healthIni);
     }
     //to start playing again
     Sleep(1000);
-    ConsoleUtils::clear();
-    displayMap(&sacha,tab);
-    initializePokimac(&chenipan,&sacha,width,height);
-    playerMove(&sacha,tab);
+    rotate(opponents+index, opponents+index+1, opponents+nbOpponents);
+    //Rotates the order of the elements in the range [first,last), in such a way that the element pointed by middle becomes the new first element.
+    nbOpponents--;
+    Pokimac *blank = new Pokimac;
+    opponents[nbOpponents] = *blank;
+    resumeGame();
 }
 
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki) {
