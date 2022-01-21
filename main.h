@@ -1,8 +1,9 @@
 #ifndef NOM_DU_FICHIER_H
 #define NOM_DU_FICHIER_H
 
+#include <iostream>
+using namespace std;
 #include <string>
-#include <cstring>
 
 typedef struct {
     int x;
@@ -15,7 +16,7 @@ typedef struct {
 } Player;
 
 struct Pokimac {
-    char* name;
+    string name;
     int health;
     int level;
     Coordonnees position;
@@ -25,8 +26,11 @@ struct Pokimac {
 extern Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 extern Pokimac mainPoki;
 extern Player sacha;
+extern string name;
 
 void BackgroundMusic();
 void startGame();
 void resumeGame();
+void win(string name);
+
 #endif

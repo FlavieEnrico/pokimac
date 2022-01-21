@@ -49,6 +49,9 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healt
     Sleep(1000);
     rotate(opponents+index, opponents+index+1, opponents+nbOpponents);
     //Rotates the order of the elements in the range [first,last), in such a way that the element pointed by middle becomes the new first element.
+    if (nbOpponents <= 0) {
+        win(name);
+    }
     nbOpponents--;
     Pokimac *blank = new Pokimac;
     opponents[nbOpponents] = *blank;

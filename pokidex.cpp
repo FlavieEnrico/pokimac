@@ -1,6 +1,9 @@
 #include "main.h"
 #include "pokidex.h"
 
+#include <iostream>
+using namespace std;
+
 Pokimac randomChooseOpponentPoki(Pokimac *pokidex){
     int nb = rand()%(15);
     Pokimac choosen_one = pokidex[nb];
@@ -105,6 +108,30 @@ void createPokidex(){
     magneton.level = 9;
     magneton.skin = 'M';
     pokidex[13]=magneton;
+}
+
+void asciiArt() {
+    cout <<R"(
+
+
+
+                                88
+                                88        oo
+                                88
+        8b,dPPYba,   ,adPPYba,  88   ,d8  88  88,dPYba,,adPYba,  ,adPPYba,    ,adPPYba,
+        88P'    "8a a8"     "8a 88 ,a8"   88 88P'   "88"    "8a a8"     "8a  a8"      '
+        88       d8 8b       d8 8888[     88 88      88      88 8b       d8  8b
+        88b,   ,a8" "8a,   ,a8" 88`"Yba,  88 88      88      88 "8a,   ,a88  "8a,   ,a8
+        88`YbbdP"'   `"YbbdP"'  88   `Y8a 88 88      88      88  `"YbbdP"'88  `"YbbdP"
+        88
+        88
+
+        par Elise Dugué et Flavie Enrico - IMAC1 - 2022
+
+
+
+
+    )"<<endl;
 }
 
 

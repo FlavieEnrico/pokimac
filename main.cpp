@@ -4,7 +4,8 @@
 #include <locale>
 #include <windows.h>
 #include <mmsystem.h>
-#include<thread>
+#include <thread>
+#include <stdlib.h>
 using namespace std;
 
 #include "consoleUtils.hpp"
@@ -13,6 +14,8 @@ using namespace std;
 #include "pokidex.h"
 #include "combat.h"
 #include "map.h"
+
+
 
 Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 Pokimac mainPoki;
@@ -28,6 +31,8 @@ int height = 12;
 
 char* tab = new char[width*height];
 Player sacha;
+
+string name;
 
 int music=1;
 
@@ -62,6 +67,25 @@ void resumeGame() {
     playerMove(&sacha,tab);
 }
 
+void win(string name){
+    ConsoleUtils::clear();
+    cout << "Il n'y a plus de pokimacs sur la carte. Bravo " << name << " ! Tu es arrivé.e au bout du jeu :D" <<endl;
+    cout << "Veux-tu refaire une partie ? (y/n) (non par défaut)" << endl;
+
+    char choice ='n'; // non par défaut
+    cin >> choice;
+
+    if (choice == 'y') {
+        startGame();
+    } else {
+        cout << endl;
+        cout << "Merci d'avoir joué !"<<endl;
+        asciiArt();
+        exit(0);
+    }
+
+}
+
 int main() {
 
     srand(time(0)); //generate random numbers
@@ -73,7 +97,7 @@ int main() {
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1100, 700, TRUE);
 
     setlocale(LC_CTYPE, "fra");
-    string name;
+
 
     createPokidex(); // Remplissage infos pokimacs
 
@@ -84,7 +108,7 @@ int main() {
     thread MusicThread(BackgroundMusic);
     MusicThread.join();
 
-    //greeting(name);
+    greeting(name);
     starterDisplay(name, mainPoki);
 
     music=3;

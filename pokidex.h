@@ -8,4 +8,6 @@ extern int nbOpponents;
 void createPokidex();
 Pokimac randomChooseOpponentPoki(Pokimac *pokidex);
 
+void asciiArt();
+
 #endif // POKIDEX_H_INCLUDED
