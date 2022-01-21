@@ -6,6 +6,7 @@ using namespace std;
 #include "main.h"
 #include "combat.h"
 #include "consoleUtils.hpp"
+#include "map.h"
 
 void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
@@ -40,6 +41,13 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
         ConsoleUtils::clear();
         combat(mainPoki, opponentPoki, healthIni);
     }
+    //to start playing again
+    Sleep(1000);
+    ConsoleUtils::clear();
+    displayMap(&chenipan,&sacha,tab);
+    createPokidex();
+    initializePokimac(&chenipan,&sacha,width,height);
+    playerMove(&chenipan,&sacha,tab);
 }
 
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki) {

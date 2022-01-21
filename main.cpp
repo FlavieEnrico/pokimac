@@ -21,6 +21,7 @@ int width = 24;
 int height = 12;
 
 char* tab = new char[width*height];
+Player sacha;
 
 int music=1;
 
@@ -50,7 +51,6 @@ int main() {
     createPokidex(); // Remplissage infos pokimacs
 
     // Création du joueur //
-    Player sacha;
     initializePlayer(&sacha,width,height);
     fillMap(tab,width,height);
 

@@ -24,6 +24,7 @@ struct Pokimac {
 
 extern Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 extern Pokimac mainPoki;
+extern Player sacha;
 
 void createPokidex();
 
