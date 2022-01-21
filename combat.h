@@ -2,7 +2,7 @@
 #include "main.h"
 
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki);
-void capture(Pokimac &opponentPoki, const int healthIni);
+int capture(Pokimac &opponentPoki);
 void fuite();
 
 void displayPoki(Pokimac &mainPoki, Pokimac &opponentPoki);

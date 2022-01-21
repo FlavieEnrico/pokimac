@@ -4,12 +4,13 @@
 using namespace std;
 
 #include "poki-start.h"
+#include "consoleUtils.hpp"
 #include "main.h"
 
 void greeting(string &name){
     cout << "Bienvenue nouveau dresseur ! On m'a dit qu'une potentielle nouvelle recrue commençait à se faire une réputation à Champy-Marny, mais je ne pensais pas te rencontrer de sitôt. D'ailleurs comment t'appelles-tu ?" << endl;
     cin >> name;
-    cout << name << " ? Ravi de te rencontrer. Tu pourras m'appeler le Professeur, je t'accompagnerais dans le début de ton aventure. Sais-tu ce qu'est un PokImac (y/n) ?" << endl;
+    cout << name << " ? Ravi de te rencontrer. Tu pourras m'appeler le Professeur, je t'accompagnerais dans le début de ton aventure. Sais-tu ce qu'est un PokImac (y/n) (yes par défaut)?" << endl;
     string more;
     cin >> more;
 	if (more=="n" || more=="N") {
@@ -28,7 +29,7 @@ void starterDisplay(string &name, Pokimac &starterPoki) {
     cout << "3. Carapuce. C'est un pokimac de type Eau. La carapace de Carapuce ne sert pas qu’à le protéger. La forme ronde de sa carapace et ses rainures lui permettent d’améliorer son hydrodynamisme. Ce Pokémon nage extrêmement vite. Il se réfugie dans sa carapace et réplique en éclaboussant l’ennemi à la première occasion." << endl << endl;
     cout << "Alors " << name << ", qui choisis-tu pour t'accompagner dans ton aventure ? (1/2/3)" << endl;
     starterChoice(starterPoki);
-    system("cls");
+    ConsoleUtils::clear();
     cout << starterPoki.name << " a rejoint ton équipe ! L'aventure peut commencer !" << endl;
 }
 

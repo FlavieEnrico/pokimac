@@ -157,6 +157,9 @@ void randomMoveGenerator(Pokimac *any_pokimac,int index, Player *sacha, char* ta
 
             ///// Si je vais sur la même case que le joueur
             if ((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y)){
+                    music=2;
+                    BackgroundMusic();
+
                     ConsoleUtils::clear();
                     combat(mainPoki, *any_pokimac,index, any_pokimac->health);
             }

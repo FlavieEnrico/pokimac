@@ -2,6 +2,8 @@
 #include <cstring>
 #include <windows.h>
 #include <algorithm> //rotate func
+#include <random>
+#include <ctime>
 using namespace std;
 
 #include "main.h"
@@ -12,6 +14,7 @@ using namespace std;
 
 void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
+    int captureSuccess=0;
     cout << "1. Attaque !" << endl << "2. Capture" << endl << "3. Fuite" << endl;
     string choice;
     cin >> choice;
@@ -25,7 +28,12 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healt
     }
     else if (choice=="2") {
         if (opponentPoki.health < healthIni/2) {
-            capture(opponentPoki, healthIni);
+            captureSuccess=capture(opponentPoki);
+            if (captureSuccess==-1) {
+                Sleep(1000);
+                ConsoleUtils::clear();
+                combat(mainPoki, opponentPoki, index, healthIni);
+            }
         }
         else {
             cout << "Le pokémon n'est pas assez affaibli pour être capturé !" << endl;
@@ -58,18 +66,38 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healt
     resumeGame();
 }
 
+int randomGenerate() {
+    srand(time(0));
+    int chanceCapture;
+    chanceCapture=rand()%(3);
+    return chanceCapture;
+}
+
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki) {
     cout << "Tu as attaqué !" << endl;
     opponentPoki.health = opponentPoki.health - mainPoki.level;
     cout << "Tu as infligé " << mainPoki.level << " points de dégâts !" << endl;
 }
 
-void capture(Pokimac &opponentPoki, const int healthIni){
-    cout << "Tu as capturé le pokimac !" << endl;
+int capture(Pokimac &opponentPoki){
+    int chanceCapture;
+    chanceCapture=randomGenerate();
+    if (chanceCapture==2) {
+        cout << "Tu as capturé le pokimac !" << endl;
+        return 1;
+    }
+    else {
+        cout << "Le pokimac s'est échappé de la pokeball ! Essaie encore." << endl;
+        return -1;
+    }
 }
 
 void fuite() {
-    cout << "Tu as fui... " << endl;
+    cout << "Tu as pris la fuite... " << endl;
+}
+
+void introCombat() {
+    cout << "Un combat est sur le point de commencer ! Que vas-tu faire ?" << endl;
 }
 
 void displayPoki(Pokimac &mainPoki, Pokimac &opponentPoki) {

@@ -57,6 +57,9 @@ void startGame() {
 }
 
 void resumeGame() {
+    music=3;
+    BackgroundMusic();
+
     ConsoleUtils::clear();
     displayMap(&sacha,tab);
 

@@ -28,6 +28,8 @@ extern Pokimac mainPoki;
 extern Player sacha;
 extern string name;
 
+extern int music;
+
 void BackgroundMusic();
 void startGame();
 void resumeGame();
