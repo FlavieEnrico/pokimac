@@ -73,7 +73,7 @@ int main() {
     ConsoleUtils::clear();
     displayMap(&sacha,tab);
     putPokimacsOnMap();
-    playerMove(opponents,&sacha,tab);
+    playerMove(&sacha,tab);
 
     // important free my allocated memory
     free(tab);

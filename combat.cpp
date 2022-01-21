@@ -47,7 +47,7 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, const int healthIni) {
     ConsoleUtils::clear();
     displayMap(&sacha,tab);
     initializePokimac(&chenipan,&sacha,width,height);
-    playerMove(&chenipan,&sacha,tab);
+    playerMove(&sacha,tab);
 }
 
 void attaque(Pokimac &mainPoki, Pokimac &opponentPoki) {

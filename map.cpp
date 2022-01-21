@@ -40,7 +40,7 @@ void displayMap(Player *sacha, char* tab) {
 }
 
 /// Mouvement du joueur ///
-void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
+void playerMove(Player *sacha, char* tab){
     bool exitLoop = false;
 		while (!exitLoop) {
             bool special = false;
@@ -48,7 +48,13 @@ void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
 			//// Pokimacs part ///
 
             for (int i=0;i<5;i++){
-                randomMoveGenerator(&any_pokimac[i], sacha, tab, width, height);
+                randomMoveGenerator(&opponents[i], sacha, tab, width, height);
+                ///// Si je vais sur la même case qu'un pokémon
+                    if ((opponents[i].position.x == sacha->position.x)&&(opponents[i].position.y == sacha->position.y)){
+                        exitLoop = true;
+                        ConsoleUtils::clear();
+                        combat(mainPoki, opponents[i], opponents[i].health);
+                    }
 			}
 
 			//// Player part ///
@@ -75,13 +81,6 @@ void playerMove(Pokimac *any_pokimac, Player *sacha, char* tab){
             cout << tab[oldSachaPos.y*width+oldSachaPos.x]; // Clean up my current location by showing what is in my tab
             ConsoleUtils::setCursorPos(sacha->position.x, sacha->position.y);
             cout << sacha->skin; // Output '@' at my position
-
-                    ///// Si je vais sur la même case qu'un pokémon
-                    if ((any_pokimac->position.x == sacha->position.x)&&(any_pokimac->position.y == sacha->position.y)){
-                        exitLoop = true;
-                        ConsoleUtils::clear();
-                        combat(mainPoki, *any_pokimac, any_pokimac->health);
-                    }
 			}
 
 
@@ -118,7 +117,7 @@ void putPokimacsOnMap(){
     for (int i=0;i<5;i++){
         Pokimac choosen_one = randomChooseOpponentPoki(pokidex);
         opponents[i]=choosen_one;
-        initializePokimac(&choosen_one,&sacha,width,height);
+        initializePokimac(&opponents[i],&sacha,width,height);
     }
 }
 
