@@ -57,7 +57,7 @@ void playerMove(Player *sacha, char* tab){
                         BackgroundMusic();
 
                         ConsoleUtils::clear();
-                        combat(mainPoki, opponents[i], i, opponents[i].health);
+                        combat(&mainPoki, &opponents[i], i, opponents[i].health);
                     }
 			}
 
@@ -165,7 +165,7 @@ void randomMoveGenerator(Pokimac *any_pokimac,int index, Player *sacha, char* ta
                     BackgroundMusic();
 
                     ConsoleUtils::clear();
-                    combat(mainPoki, *any_pokimac,index, any_pokimac->health);
+                    combat(&mainPoki, any_pokimac,index, any_pokimac->health);
             }
 
         }

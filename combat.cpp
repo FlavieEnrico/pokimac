@@ -2,6 +2,7 @@
 #include <cstring>
 #include <windows.h>
 #include <algorithm> //rotate func
+#include <locale>
 #include <random>
 #include <ctime>
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
 #include "map.h"
 #include "pokidex.h"
 
-void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healthIni) {
+void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
     int captureSuccess=0;
     cout << "1. Attaque !" << endl << "2. Capture" << endl << "3. Fuite" << endl;
@@ -20,14 +21,14 @@ void combat(Pokimac &mainPoki, Pokimac &opponentPoki, int index, const int healt
     cin >> choice;
     if (choice=="1") {
         attaque(mainPoki, opponentPoki);
-        if (opponentPoki.health>0) {
+        if (opponentPoki->health>0) {
             Sleep(1000);
             ConsoleUtils::clear();
             combat(mainPoki, opponentPoki, index, healthIni);
         }
     }
     else if (choice=="2") {
-        if (opponentPoki.health < healthIni/2) {
+        if (opponentPoki->health < healthIni/2) {
             captureSuccess=capture(opponentPoki);
             if (captureSuccess==-1) {
                 Sleep(1000);
@@ -73,13 +74,13 @@ int randomGenerate() {
     return chanceCapture;
 }
 
-void attaque(Pokimac &mainPoki, Pokimac &opponentPoki) {
+void attaque(Pokimac *mainPoki, Pokimac *opponentPoki) {
     cout << "Tu as attaqué !" << endl;
-    opponentPoki.health = opponentPoki.health - mainPoki.level;
-    cout << "Tu as infligé " << mainPoki.level << " points de dégâts !" << endl;
+    opponentPoki->health = opponentPoki->health - mainPoki->level;
+    cout << "Tu as infligé " << mainPoki->level << " points de dégâts !" << endl;
 }
 
-int capture(Pokimac &opponentPoki){
+int capture(Pokimac *opponentPoki){
     int chanceCapture;
     chanceCapture=randomGenerate();
     if (chanceCapture==2) {
@@ -100,7 +101,7 @@ void introCombat() {
     cout << "Un combat est sur le point de commencer ! Que vas-tu faire ?" << endl;
 }
 
-void displayPoki(Pokimac &mainPoki, Pokimac &opponentPoki) {
-    cout << endl << endl << mainPoki.name << "                  " << opponentPoki.name << endl;
-    cout << "   " << mainPoki.health << "                          " << opponentPoki.health << endl << endl;
+void displayPoki(Pokimac *mainPoki, Pokimac *opponentPoki) {
+    cout << endl << endl << mainPoki->name << "                  " << opponentPoki->name << endl;
+    cout << "   " << mainPoki->health << "                          " << opponentPoki->health << endl << endl;
 }

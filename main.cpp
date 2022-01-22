@@ -99,8 +99,7 @@ int main() {
 
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1100, 700, TRUE);
 
-    setlocale(LC_CTYPE, "fra");
-
+    setlocale(LC_ALL, "fra");
 
     createPokidex(); // Remplissage infos pokimacs
 
@@ -111,8 +110,8 @@ int main() {
     thread MusicThread(BackgroundMusic);
     MusicThread.join();
 
-    greeting(name);
-    starterDisplay(name, mainPoki);
+    greeting(&name);
+    starterDisplay(&name, &mainPoki);
 
     music=3;
     BackgroundMusic();
