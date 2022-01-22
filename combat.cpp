@@ -24,13 +24,22 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
         if (opponentPoki->health>0) {
             Sleep(1000);
             ConsoleUtils::clear();
+            attaqueEnnemi(mainPoki, opponentPoki);
+            Sleep(1000);
+            ConsoleUtils::clear();
             combat(mainPoki, opponentPoki, index, healthIni);
+        }
+        else {
+            mainPoki->health=60;
         }
     }
     else if (choice=="2") {
         if (opponentPoki->health < healthIni/2) {
-            captureSuccess=capture(opponentPoki);
+            captureSuccess=capture(opponentPoki, mainPoki);
             if (captureSuccess==-1) {
+                Sleep(1000);
+                ConsoleUtils::clear();
+                attaqueEnnemi(mainPoki, opponentPoki);
                 Sleep(1000);
                 ConsoleUtils::clear();
                 combat(mainPoki, opponentPoki, index, healthIni);
@@ -44,7 +53,7 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
         }
     }
     else if (choice=="3") {
-        fuite();
+        fuite(mainPoki);
         Sleep(1000);
         resumeGame();
     }
@@ -74,17 +83,25 @@ int randomGenerate() {
     return chanceCapture;
 }
 
+void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
+    displayPoki(mainPoki, opponentPoki);
+    cout << opponentPoki->name << " a attaqué !" << endl;
+    mainPoki->health = mainPoki->health - opponentPoki->level;
+    cout << "Tu as perdu " << opponentPoki->level << " points de vie !" << endl;
+}
+
 void attaque(Pokimac *mainPoki, Pokimac *opponentPoki) {
     cout << "Tu as attaqué !" << endl;
     opponentPoki->health = opponentPoki->health - mainPoki->level;
     cout << "Tu as infligé " << mainPoki->level << " points de dégâts !" << endl;
 }
 
-int capture(Pokimac *opponentPoki){
+int capture(Pokimac *opponentPoki, Pokimac *mainPoki){
     int chanceCapture;
     chanceCapture=randomGenerate();
     if (chanceCapture==2) {
         cout << "Tu as capturé le pokimac !" << endl;
+        mainPoki->health=60;
         return 1;
     }
     else {
@@ -93,8 +110,9 @@ int capture(Pokimac *opponentPoki){
     }
 }
 
-void fuite() {
+void fuite(Pokimac *mainPoki) {
     cout << "Tu as pris la fuite... " << endl;
+    mainPoki->health=60;
 }
 
 void introCombat() {

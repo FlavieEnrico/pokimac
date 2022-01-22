@@ -15,14 +15,23 @@ typedef struct {
     char skin;
 } Player;
 
+struct Attaque {
+    string name;
+    int degats;
+    string type;
+};
+
 struct Pokimac {
     string name;
     int health;
     int level;
     Coordonnees position;
     char skin;
+    string type;
+    Attaque attaques;
 };
 
+extern Attaque flammeche;
 extern Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,magicarpe,ronflex,abo,rondoudou,psykokwak,magneton;
 extern Pokimac mainPoki;
 extern Player sacha;

@@ -21,6 +21,8 @@ Pokimac bulbizarre,salameche,carapuce,chenipan,aspicot,ratata,pichu,taupiqueur,m
 Pokimac mainPoki;
 Pokimac pokidex[14];
 
+Attaque flammeche;
+
 int nbOpponents = 5;
 const int nb = 5;
 Pokimac opponents[nb];
@@ -100,6 +102,8 @@ int main() {
     MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 1100, 700, TRUE);
 
     setlocale(LC_ALL, "fra");
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
 
     createPokidex(); // Remplissage infos pokimacs
 
