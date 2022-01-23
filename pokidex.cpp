@@ -110,12 +110,6 @@ void createPokidex(){
     pokidex[13]=magneton;
 }
 
-void generateAttacks(){
-    //Attaque bulbizarre;
-    flammeche.name="Flammèche";
-    flammeche.degats=20;
-    flammeche.type="feu";
-}
 
 void asciiArt() {
     cout <<R"(
