@@ -76,29 +76,66 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
     resumeGame();
 }
 
-int randomGenerate() {
+int randomGenerate(int proba) {
     srand(time(0));
     int chanceCapture;
-    chanceCapture=rand()%(3);
+    chanceCapture=rand()%(proba);
     return chanceCapture;
 }
 
 void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
     displayPoki(mainPoki, opponentPoki);
     cout << opponentPoki->name << " a attaqué !" << endl;
-    mainPoki->health = mainPoki->health - opponentPoki->level;
-    cout << "Tu as perdu " << opponentPoki->level << " points de vie !" << endl;
+    int plusOuMoins=randomGenerate(2);
+    int ptDegats;
+    if (plusOuMoins==1) {
+        ptDegats=opponentPoki->level - randomGenerate(opponentPoki->level);
+        mainPoki->health = mainPoki->health - ptDegats;
+        cout << "Tu as perdu " << ptDegats << " points de vie !" << endl;
+    }
+    else {
+        ptDegats=opponentPoki->level - randomGenerate(opponentPoki->level);
+        mainPoki->health = mainPoki->health + ptDegats;
+        cout << "Tu as perdu " << ptDegats << " points de vie !" << endl;
+    }
+    if (mainPoki->health<=0){
+        ConsoleUtils::clear();
+        cout << "Ton Pokimac n'a plus de vie... Game Over." <<endl;
+        cout << "Veux-tu refaire une partie ? (y/n) (non par défaut)" << endl;
+
+        char choice ='n'; // non par défaut
+        cin >> choice;
+
+    if (choice == 'y') {
+        startGame();
+    } else {
+        cout << endl;
+        cout << "Merci d'avoir joué !"<<endl;
+        asciiArt();
+        exit(0);
+    }
+    }
 }
 
 void attaque(Pokimac *mainPoki, Pokimac *opponentPoki) {
     cout << "Tu as attaqué !" << endl;
-    opponentPoki->health = opponentPoki->health - mainPoki->level;
-    cout << "Tu as infligé " << mainPoki->level << " points de dégâts !" << endl;
+    int plusOuMoins=randomGenerate(2);
+    int ptDegats;
+    if (plusOuMoins==1) {
+        ptDegats=mainPoki->level - randomGenerate(mainPoki->level);
+        opponentPoki->health = opponentPoki->health - ptDegats;
+        cout << "Tu as infligé " << ptDegats << " points de dégâts !" << endl;
+    }
+    else {
+        ptDegats=mainPoki->level + randomGenerate(mainPoki->level);
+        opponentPoki->health = opponentPoki->health - ptDegats;
+        cout << "Tu as infligé " << ptDegats << " points de dégâts !" << endl;
+    }
 }
 
 int capture(Pokimac *opponentPoki, Pokimac *mainPoki){
     int chanceCapture;
-    chanceCapture=randomGenerate();
+    chanceCapture=randomGenerate(4);
     if (chanceCapture==2) {
         cout << "Tu as capturé le pokimac !" << endl;
         mainPoki->health=60;
