@@ -13,6 +13,7 @@ using namespace std;
 #include "map.h"
 #include "pokidex.h"
 
+/// Fonction principale de combat avec lecture de l'action du joueur ///
 void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healthIni) {
     displayPoki(mainPoki, opponentPoki);
     int captureSuccess=0;
@@ -22,6 +23,7 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
     if (choice=="1") {
         attaque(mainPoki, opponentPoki);
         if (opponentPoki->health>0) {
+                /// Si l'ennemi est toujours vivant, lui donne la possibilité d'attaquer et reprend le combat ///
             Sleep(1000);
             ConsoleUtils::clear();
             attaqueEnnemi(mainPoki, opponentPoki);
@@ -35,6 +37,7 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
     }
     else if (choice=="2") {
         if (opponentPoki->health < healthIni/2) {
+                /// Détermine si le joueur a réussi la capture ou non ///
             captureSuccess=capture(opponentPoki, mainPoki);
             if (captureSuccess==-1) {
                 Sleep(1000);
@@ -77,12 +80,12 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
 }
 
 int randomGenerate(int proba) {
-    srand(time(0));
     int chanceCapture;
     chanceCapture=rand()%(proba);
     return chanceCapture;
 }
 
+/// Fonction de l'attaque ennemie ///
 void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
     displayPoki(mainPoki, opponentPoki);
     cout << opponentPoki->name << " a attaqué !" << endl;
@@ -117,6 +120,7 @@ void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
     }
 }
 
+/// Fonction de l'attaque de notre poki
 void attaque(Pokimac *mainPoki, Pokimac *opponentPoki) {
     cout << "Tu as attaqué !" << endl;
     int plusOuMoins=randomGenerate(2);
@@ -133,6 +137,7 @@ void attaque(Pokimac *mainPoki, Pokimac *opponentPoki) {
     }
 }
 
+/// Fonction de capture ; une chance sur 4 d'attraper le pokemon sauvage ///
 int capture(Pokimac *opponentPoki, Pokimac *mainPoki){
     int chanceCapture;
     chanceCapture=randomGenerate(4);
@@ -147,15 +152,18 @@ int capture(Pokimac *opponentPoki, Pokimac *mainPoki){
     }
 }
 
+/// Fonction de la fuite ///
 void fuite(Pokimac *mainPoki) {
     cout << "Tu as pris la fuite... " << endl;
     mainPoki->health=60;
 }
 
+/// Display de l'intro de combat ///
 void introCombat() {
     cout << "Un combat est sur le point de commencer ! Que vas-tu faire ?" << endl;
 }
 
+/// Affichage du nom et des PV ///
 void displayPoki(Pokimac *mainPoki, Pokimac *opponentPoki) {
     cout << endl << endl << mainPoki->name << "                  " << opponentPoki->name << endl;
     cout << "   " << mainPoki->health << "                          " << opponentPoki->health << endl << endl;

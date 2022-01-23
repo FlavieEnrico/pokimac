@@ -38,6 +38,8 @@ string name;
 
 int music=1;
 
+
+/// Fonction pour le thread de la musique de fond ; détecte quelle musique doit être jouée ///
 void BackgroundMusic() {
     PlaySound(NULL, 0, 0);
     if(music==1) {
@@ -51,6 +53,7 @@ void BackgroundMusic() {
     }
 }
 
+/// Fonction pour lancer le jeu ///
 void startGame() {
     ConsoleUtils::clear();
     displayMap(&sacha,tab);
@@ -58,6 +61,8 @@ void startGame() {
     playerMove(&sacha,tab);
 }
 
+
+/// Fonction pour continuer le jeu à la fin d'un combat ///
 void resumeGame() {
     music=3;
     BackgroundMusic();
@@ -72,6 +77,7 @@ void resumeGame() {
     playerMove(&sacha,tab);
 }
 
+/// Fonction de fin du jeu, succès ///
 void win(string name){
     ConsoleUtils::clear();
     cout << "Il n'y a plus de pokimacs sur la carte. Bravo " << name << " ! Tu es arrivé.e au bout du jeu :D" <<endl;
@@ -111,15 +117,18 @@ int main() {
     initializePlayer(&sacha,width,height);
     fillMap(tab,width,height);
 
+    /// Création du thread pour la musique de fond ///
     thread MusicThread(BackgroundMusic);
     MusicThread.join();
 
+    /// Première séquence ///
     greeting(&name);
     starterDisplay(&name, &mainPoki);
 
     music=3;
     BackgroundMusic();
 
+    /// Deuxième séquence ///
     Sleep(1000);
     startGame();
 

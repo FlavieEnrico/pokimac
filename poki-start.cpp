@@ -7,6 +7,7 @@ using namespace std;
 #include "consoleUtils.hpp"
 #include "main.h"
 
+/// Discours de bienvenue et récupération du nom du joueur ///
 void greeting(string *name){
     cout << "Bienvenue nouveau dresseur ! On m'a dit qu'une potentielle nouvelle recrue commençait à se faire une réputation à Champy-Marny, mais je ne pensais pas te rencontrer de sitôt. D'ailleurs comment t'appelles-tu ?" << endl;
     cin >> *name;
@@ -19,6 +20,8 @@ void greeting(string *name){
     }
 }
 
+
+/// Affichage des choix possibles pour le starter ///
 void starterDisplay(string *name, Pokimac *starterPoki) {
     cout << "J'espère que tu es prêt à débuter ton aventure ! Mais avant ça, tu vas avoir l'opportunité de choisir ton premier pokimac. Il n'y a pas vraiment de bon choix ou de mauvais choix, " << *name << ", le meilleur choix c'est celui que tu fais avec le coeur ! Laisse moi te les présenter." << endl << endl;
     Sleep(1000);
@@ -33,6 +36,8 @@ void starterDisplay(string *name, Pokimac *starterPoki) {
     cout << starterPoki->name << " a rejoint ton équipe ! L'aventure peut commencer !" << endl;
 }
 
+
+/// Choix du pokemon principal du joueur, affectation à partir du pokidex selon la valeur ///
 void starterChoice(Pokimac *starterPoki) {
 
     string choice;
