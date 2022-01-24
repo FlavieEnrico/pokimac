@@ -44,3 +44,6 @@ obj/
 *.pdf
 *.bak
 *.cscope_file_list
+.vscode/configurationCache.log
+.vscode/dryrun.log
+*.log
