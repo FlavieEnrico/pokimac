@@ -71,7 +71,7 @@ void resumeGame() {
     displayMap(&sacha,tab);
 
     for (int i=0;i<nbOpponents;i++){
-        ConsoleUtils::setCursorPos(opponents[i].position.x, opponents[i].position.y);//on positionne le curseur de la console à la position du pokemon
+        ConsoleUtils::setCursorPos(opponents[i].position.x, opponents[i].position.y);//on positionne le curseur de la console Ã  la position du pokemon
         cout << opponents[i].skin; // Output 'C' at pokemon position
     }
     playerMove(&sacha,tab);

@@ -110,6 +110,7 @@ void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
         cin >> choice;
 
     if (choice == 'y') {
+        mainPoki->health=60;
         startGame();
     } else {
         cout << endl;
