@@ -27,7 +27,7 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
             Sleep(1000);
             ConsoleUtils::clear();
             attaqueEnnemi(mainPoki, opponentPoki);
-            Sleep(1000);
+            Sleep(2000);
             ConsoleUtils::clear();
             combat(mainPoki, opponentPoki, index, healthIni);
         }
@@ -43,7 +43,7 @@ void combat(Pokimac *mainPoki, Pokimac *opponentPoki, int index, const int healt
                 Sleep(1000);
                 ConsoleUtils::clear();
                 attaqueEnnemi(mainPoki, opponentPoki);
-                Sleep(1000);
+                Sleep(2000);
                 ConsoleUtils::clear();
                 combat(mainPoki, opponentPoki, index, healthIni);
             }
@@ -103,6 +103,10 @@ void attaqueEnnemi(Pokimac *mainPoki, Pokimac *opponentPoki) {
     }
     if (mainPoki->health<=0){
         ConsoleUtils::clear();
+
+        music=1;
+        BackgroundMusic();
+
         cout << "Ton Pokimac n'a plus de vie... Game Over." <<endl;
         cout << "Veux-tu refaire une partie ? (y/n) (non par défaut)" << endl;
 

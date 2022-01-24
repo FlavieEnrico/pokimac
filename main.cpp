@@ -80,6 +80,10 @@ void resumeGame() {
 /// Fonction de fin du jeu, succès ///
 void win(string name){
     ConsoleUtils::clear();
+
+    music=1;
+    BackgroundMusic();
+
     cout << "Il n'y a plus de pokimacs sur la carte. Bravo " << name << " ! Tu es arrivé.e au bout du jeu :D" <<endl;
     cout << "Veux-tu refaire une partie ? (y/n) (non par défaut)" << endl;
 
