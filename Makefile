@@ -20,7 +20,7 @@ map.o: map.cpp map.h pokidex.h combat.h main.h consoleUtils.hpp
 poki-start.o: poki-start.cpp poki-start.h main.h consoleUtils.hpp
 	g++ -c $(CFLAGS) $^
 
-pokidex.o: pokidex.cpp pokidex.h main.hpp
+pokidex.o: pokidex.cpp pokidex.h main.h
 	g++ -c $(CFLAGS) $^
 
 clean:
